@@ -12,7 +12,7 @@ int ParseNumber(const char* arg)
 	if ( '0' <= arg[0] && arg[0] <= '9' )
 	{
 		try { result = std::atoi(arg); }
-		catch( ... ) { }
+		catch ( ... ) { }
 	}
 	return result;
 }
@@ -30,7 +30,7 @@ int main(int argc, char** argv)
 		int CompDelay = 3;
 
 		int *arguments[]{ nullptr, &CompDelay, &lukuja, &maxValue };
-		for ( int i = 1; i < argc; ++i)
+		for ( int i = 1; i < argc; ++i )
 			if ( int temp = ParseNumber(argv[i]); temp >= 0 )
 				*arguments[i] = temp;
 
@@ -76,8 +76,7 @@ int main(int argc, char** argv)
 				p.Tolppa(i, arr[i]);
 				//copyArr[i] = arr[i];
 			}
-			p.cls(true);
-			p.Redraw();
+			p.Redraw(true);
 
 			if (firstRound)
 			{
@@ -85,8 +84,7 @@ int main(int argc, char** argv)
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 				for (int i = 0; i < lukuja; i++) { p.Tolppa(i, arr[i]); }
 				firstRound = false;
-				p.cls(true);
-				p.Redraw();
+				p.Redraw(true);
 			}
 			Sleep(1000);
 

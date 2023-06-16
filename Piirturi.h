@@ -11,7 +11,7 @@ public:
 	const int width;
 	const int height;
 	const int size;
-	char huti;
+	//char huti;
 	const char varsi;
 	const char piste;
 	const int CompDelay;
@@ -21,9 +21,7 @@ public:
 	int WriteCount{ 0 };
 	HANDLE hStdout;
 private:
-	char* data = nullptr;
-	// LPWSTR data;
-	// TCHAR* data;
+	TCHAR* data;
 
 public:
 	Piirturi(const int Wid, const int Hei, const int bot, const int delay1,
@@ -33,14 +31,13 @@ public:
 	~Piirturi();
 
 	void Reset();
-	void Redraw() const;
+	void Redraw(bool clrScr = false) const;
 	void PutText(const int x, int y, const char* text);
 	void PutCounts();
 	void PutHorLine(const int row, const char merkki, const int left = 0, int right = INT_MAX);
 	void ResetRow(const int reference[], const int row, const int left = 0, int right = INT_MAX);
 	void PutHorLineGently(const int row, const char merkki, const int left = 0, int right = INT_MAX);
 	void PutVertLine(const int col, const char merkki, const int bottom = 0, int top = INT_MAX);
-	char& at(const int col, int row);
+	TCHAR& at(const int col, int row);
 	void Tolppa(int x, int y);
-	void cls(bool forReal = false) const;
 };
