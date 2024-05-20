@@ -1,3 +1,4 @@
+#include "sleep.h"
 #include "InsertSort.h"
 
 void InsertSort(int arr[], const int left, const int right, Piirturi& piirt)

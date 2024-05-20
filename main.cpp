@@ -1,5 +1,8 @@
 #include <limits>
+#include <iostream>
+#include <cstdio>
 #include <memory>
+#include "sleep.h"
 #include "Piirturi.h"
 #include "Randomizer.h"
 #include "QuickSort.h"

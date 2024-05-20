@@ -1,3 +1,7 @@
+#include <cstdlib>
+#include <utility>
+#include <time.h>
+#include "sleep.h"
 #include "QuickSort.h"
 #include "InsertSort.h"
 
@@ -18,7 +22,7 @@ void Quicksort(int a[], const int alku, const int loppu, Piirturi& p, const int 
 	//int halfWay = (alku + loppu) / 2;
 	//if (false && len >= 9)
 	//{
-	//
+//
 	//	int x1 = MedianOf3(a[alku], a[alku + 1], a[alku + 2], p);
 	//	int x2 = MedianOf3(a[halfWay - 1], a[halfWay], a[halfWay + 1], p);
 	//	int x3 = MedianOf3(a[loppu], a[loppu - 1], a[loppu - 2], p);

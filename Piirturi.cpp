@@ -1,6 +1,7 @@
 #include <cassert>
-// #include <sstream>
+#include <cstdio>
 #include "Piirturi.h"
+
 
 Piirturi::Piirturi(const int Wid,
                    const int Hei,
@@ -8,7 +9,8 @@ Piirturi::Piirturi(const int Wid,
                    const int delay1,
                    const int delay2,
                    bool counts)
-	: bottomNegatives{ bot + (ShowCounts ? 2 : 0) },
+	:  ShowCounts{ counts },
+	  bottomNegatives{ bot + (ShowCounts ? 2 : 0) },
 	  width{ Wid + 1 },
 	  height{ Hei + bottomNegatives + 1 },
 	  size{ width * height },
@@ -17,9 +19,10 @@ Piirturi::Piirturi(const int Wid,
 	  CopyDelay{ delay2 },
 	  varsi{ '|' },
 	  piste{ '*' },
-	  ShowCounts{ counts },
-	  hStdout{ GetStdHandle(STD_OUTPUT_HANDLE) },
-	  data{ new TCHAR[size] }
+#ifdef _WIN32
+	hStdout{ GetStdHandle(STD_OUTPUT_HANDLE) },
+#endif
+	data{ new TCHAR[size] }
 {
 	Reset();
 };
@@ -66,19 +69,23 @@ void Piirturi::PutText(const int x, int y, const char* text)
 		{
 			if ( --y < -bottomNegatives )
 				return;
-			
+
 			cursor = &at(0, y);
 			continue;
 		}
-
+		
 		*cursor++ = text[i++];
 	}
 }
 
 void Piirturi::PutCounts()
 {
-	char s[50];
+	char s[50]{0};
+#ifdef _WIN32
 	sprintf_s(s, 50, "Comparisons: %d\nWrites:      %d", CompCount, WriteCount);
+#else
+	snprintf(s, 50, "Comparisons: %d\nWrites:      %d", CompCount, WriteCount);
+#endif
 	PutText(0, -3, s);
 }
 
@@ -143,7 +150,7 @@ TCHAR& Piirturi::at(const int col, int row)
 	assert(row < height);
 	assert(col >= 0);
 	assert(col < width - 1);
-	
+
 	return data[row * width + col];
 }
 
@@ -156,7 +163,8 @@ void Piirturi::Tolppa(int x, int y)
 
 void Piirturi::Redraw(bool clear) const
 {
-	COORD coordScreen = { 0, 0 }; // home for the cursor
+#ifdef _WIN32
+	COORD coordScreen = { 0, 0 }; // home for the cursor 
 
 	// Put the cursor at its home coordinates.
 	SetConsoleCursorPosition(hStdout, coordScreen);
@@ -165,7 +173,7 @@ void Piirturi::Redraw(bool clear) const
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	DWORD dwConSize;
 
-	// Get the number of character cells in the current buffer.
+	// Get the number of character cells in the current buffer. 
 	if ( !GetConsoleScreenBufferInfo(hStdout, &csbi) )
 		return;
 
@@ -189,4 +197,10 @@ void Piirturi::Redraw(bool clear) const
 	}
 
 	WriteConsole(hStdout, data, size, &cCharsWritten, NULL);
+#else
+	if ( clear )
+		printf("\033c");
+	printf("\x1b[H");
+	printf("%s", data);
+#endif
 }

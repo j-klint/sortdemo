@@ -1,7 +1,12 @@
 #pragma once
-#include <iostream>
+//#include <iostream>
+#ifdef _WIN32
 #include <Windows.h>
 #undef max
+#else 
+#include <climits>
+#define TCHAR char
+#endif
 
 class Piirturi
 {
@@ -12,16 +17,18 @@ public:
 	const int height;
 	const int size;
 	//char huti;
-	const char varsi;
-	const char piste;
 	const int CompDelay;
 	const int CopyDelay;
 	int PrevPivot{ -1 };
 	int CompCount{ 0 };
 	int WriteCount{ 0 };
+	const char varsi;
+	const char piste;
+#ifdef _WIN32
 	HANDLE hStdout;
+#endif
 private:
-	TCHAR* data;
+	TCHAR* data = nullptr;
 
 public:
 	Piirturi(const int Wid, const int Hei, const int bot, const int delay1,

@@ -1,19 +1,39 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "c17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "linux-gcc-x64"
+        },
+        {
+            "name": "Windows",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
             "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
+                "NDEBUG"
             ],
             "windowsSdkVersion": "10.0.22000.0",
             "cStandard": "c17",
             "intelliSenseMode": "windows-msvc-x64",
-            "compilerPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.36.32532/bin/Hostx64/x64/cl.exe"
+            "compilerPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.39.33519/bin/Hostx64/x64/cl.exe",
+            "compilerArgs": [
+                "/GR-",
+                "/O2",
+                "/GL",
+                "/Gw",
+                "/MT",
+                "/W4",
+                "/std:c++17",
+                "/EHsc"
+            ],
+            "cppStandard": "c++17"
         }
     ],
     "version": 4
