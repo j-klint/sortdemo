@@ -35,7 +35,7 @@ void InsertSort(int arr[], const int left, const int right, Piirturi& piirt)
 			if (i <= k)
 			{
 				piirt.at(i-1, -1) = '^';
-				if (char& m = piirt.at(i, -1); m == '^') { m = '-'; }
+				if ( auto& m = piirt.at(i, -1); m == '^' ) { m = '-'; }
 			}
 			if (piirt.ShowCounts)
 			{
