@@ -19,24 +19,8 @@ void Quicksort(int a[], const int alku, const int loppu, Piirturi& p, const int 
 	}
 
 	int pivot;
-	//int halfWay = (alku + loppu) / 2;
-	//if (false && len >= 9)
-	//{
-//
-	//	int x1 = MedianOf3(a[alku], a[alku + 1], a[alku + 2], p);
-	//	int x2 = MedianOf3(a[halfWay - 1], a[halfWay], a[halfWay + 1], p);
-	//	int x3 = MedianOf3(a[loppu], a[loppu - 1], a[loppu - 2], p);
-	//	pivot = MedianOf3(x1, x2, x3, p);
-	//	//pivot = MedianOf3(a[alku], a[loppu], a[halfWay]);
-	//	//pivot = a[halfWay];
-	//}
-	//else
-	//{
-	//	//pivot = a[halfWay];
-		srand(static_cast<unsigned>(time(nullptr)));
-		pivot = MedianOf3(a[alku + rand() % len], a[alku + rand() % len], a[alku + rand() % len], p);
-	//	
-	//}
+	srand(static_cast<unsigned>(time(nullptr)));
+	pivot = MedianOf3(a[alku + rand() % len], a[alku + rand() % len], a[alku + rand() % len], p);
 
 	p.PrevPivot = pivot;
 	p.PutHorLineGently(pivot, '-');
@@ -147,7 +131,6 @@ int MedianOf3(const int a, const int b, const int c, Piirturi& p)
 	{
 		p.CompCount += 2;
 		p.PutCounts();
-		//p.Redraw();
 	}
 	if ((a > b) != (a > c))
 	{
@@ -160,7 +143,6 @@ int MedianOf3(const int a, const int b, const int c, Piirturi& p)
 		{
 			p.CompCount += 2;
 			p.PutCounts();
-			//p.Redraw();
 		}
 		if ((b > a) != (b > c))
 		{

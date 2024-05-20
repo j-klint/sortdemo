@@ -7,7 +7,7 @@ struct Randomizer
 	const int lukuja;
 	const int maxValue;
 
-	Randomizer(const int lkm, const int max) : lukuja{ lkm }, maxValue{max}
+	Randomizer(const int lkm, const int max) : lukuja{ lkm }, maxValue{ max }
 	{
 		srand(static_cast<unsigned>(time(nullptr)));
 	}
@@ -81,7 +81,6 @@ struct Randomizer
 
 	void rnd(int arr[]) const
 	{
-		//srand(time(0));
 		for (int i = 0; i < lukuja; i++)
 		{
 			int n = 1 + rand() % maxValue;
@@ -168,7 +167,7 @@ struct Randomizer
 	
 	void almost(int arr[], const int k = 5) const
 	{
-		auto swapped = std::make_unique<bool[]>(lukuja); // n�ytt�� alustavan 0:iksi
+		auto swapped = std::make_unique<bool[]>(lukuja); // näyttää alustavan 0:iksi
 		straightLine(arr);
 		for (int i = 0; i < lukuja; i++)
 		{

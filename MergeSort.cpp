@@ -123,9 +123,6 @@ void QMergeSort(int arr[], const int left, const int right, Piirturi& piir, cons
 
 	int mid = (left + right) / 2;
 
-	//splitQue->push({ mid + 1, right });
-	//splitQue->push({ left, mid });
-	//mergeStack->push({ left, mid, right });
 	splitQue->emplace(std::pair{ mid + 1, right });
 	splitQue->emplace(std::pair{ left, mid });
 	mergeStack->emplace(std::tuple{ left, mid, right });

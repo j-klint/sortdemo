@@ -3,7 +3,7 @@
 #ifdef _WIN32
 #include <Windows.h>
 #undef max
-#else 
+#else
 #include <climits>
 #define TCHAR char
 #endif
@@ -16,7 +16,6 @@ public:
 	const int width;
 	const int height;
 	const int size;
-	//char huti;
 	const int CompDelay;
 	const int CopyDelay;
 	int PrevPivot{ -1 };

@@ -2,7 +2,6 @@
 #include <cstdio>
 #include "Piirturi.h"
 
-
 Piirturi::Piirturi(const int Wid,
                    const int Hei,
                    const int bot,
@@ -59,12 +58,12 @@ void Piirturi::PutText(const int x, int y, const char* text)
 		{
 			if ( --y < -bottomNegatives )
 				return;
-			
+
 			cursor = &at(x, y);
 			++i;
 			continue;
 		}
-		
+
 		if ( *cursor == '\n' )
 		{
 			if ( --y < -bottomNegatives )
@@ -73,7 +72,7 @@ void Piirturi::PutText(const int x, int y, const char* text)
 			cursor = &at(0, y);
 			continue;
 		}
-		
+
 		*cursor++ = text[i++];
 	}
 }
@@ -103,7 +102,7 @@ void Piirturi::ResetRow(const int reference[], const int row, const int left, in
 {
 	if ( right > width - 2 )
 		right = width - 2;
-	
+
 	for ( int i = left; i <= right; ++i )
 	{
 		if ( reference[i] > row )
@@ -119,7 +118,7 @@ void Piirturi::PutHorLineGently(const int row, const char merkki, const int left
 {
 	if ( right > width - 2 )
 		right = width - 2;
-	
+
 	for ( int i = left; i <= right; ++i )
 	{
 		auto& slot = at(i, row);
@@ -132,7 +131,7 @@ void Piirturi::PutVertLine(const int col, const char merkki, const int bottom, i
 {
 	if ( top > height - bottomNegatives - 1 )
 		top = height - bottomNegatives - 1;
-	
+
 	for ( int i = bottom; i <= top; ++i )
 	{
 		if ( i == PrevPivot )
@@ -164,7 +163,7 @@ void Piirturi::Tolppa(int x, int y)
 void Piirturi::Redraw(bool clear) const
 {
 #ifdef _WIN32
-	COORD coordScreen = { 0, 0 }; // home for the cursor 
+	COORD coordScreen = { 0, 0 }; // home for the cursor
 
 	// Put the cursor at its home coordinates.
 	SetConsoleCursorPosition(hStdout, coordScreen);
@@ -173,7 +172,7 @@ void Piirturi::Redraw(bool clear) const
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	DWORD dwConSize;
 
-	// Get the number of character cells in the current buffer. 
+	// Get the number of character cells in the current buffer.
 	if ( !GetConsoleScreenBufferInfo(hStdout, &csbi) )
 		return;
 
@@ -185,15 +184,6 @@ void Piirturi::Redraw(bool clear) const
 		if ( !FillConsoleOutputCharacter(hStdout, (TCHAR)' ',
 			dwConSize, coordScreen, &cCharsWritten) )
 			return;
-
-		// // Get the current text attribute.
-		// if ( !GetConsoleScreenBufferInfo(hStdout, &csbi) )
-		// 	return;
-
-		// // Set the buffer's attributes accordingly.
-		// if ( !FillConsoleOutputAttribute(hStdout, csbi.wAttributes,
-		// 	dwConSize, coordScreen, &cCharsWritten) )
-		// 	return;
 	}
 
 	WriteConsole(hStdout, data, size, &cCharsWritten, NULL);

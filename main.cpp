@@ -27,9 +27,6 @@ int main(int argc, char** argv)
 		int lukuja = 100;
 		int maxValue{ 24 };
 		const int bottomMargin{ 2 };
-
-		//const int CompDelay = 90;
-		//const int writeDelay = 90;
 		int CompDelay = 3;
 
 		int *arguments[]{ nullptr, &CompDelay, &lukuja, &maxValue };
@@ -42,9 +39,7 @@ int main(int argc, char** argv)
 
 		Piirturi p{ lukuja, maxValue, bottomMargin, CompDelay, writeDelay, true };
 		Randomizer dist(lukuja, maxValue);
-		//srand(time(0));
 
-		// int arr[lukuja];// , copyArr[lukuja];
 		int* arr{ new int[lukuja] };
 		std::unique_ptr<int[]> arrptr{ arr };
 		bool firstRound{ 1 };
@@ -68,7 +63,6 @@ int main(int argc, char** argv)
 			else if (arpa <= 35) { dist.sqrt(arr); }			// 3
 			else if (arpa <= 39) {
 				dist.almost(arr, 3 + rand()%9);
-				//dist.almost(arr, 3);
 				bonus = 3;
 			}													// 4
 			else { dist.gaussian(arr, 0.16L); }					// 2
@@ -77,7 +71,6 @@ int main(int argc, char** argv)
 			for (int i = 0; i < lukuja; i++)
 			{
 				p.Tolppa(i, arr[i]);
-				//copyArr[i] = arr[i];
 			}
 			p.Redraw(true);
 
@@ -114,7 +107,4 @@ int main(int argc, char** argv)
 	{
 		std::cerr << "\nYeggog: Tuntematon virhe" << std::endl;
 	}
-
-	//printf("\nValmista tuli.");
-	//std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }

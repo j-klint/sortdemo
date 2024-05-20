@@ -12,7 +12,6 @@ void InsertSort(int arr[], const int left, const int right, Piirturi& piirt)
 	for (int k = left+1; k <= right; ++k)
 	{
 		piirt.PutHorLine(-1, ' ');
-		//piirt.at(k-1, -1) = '<';
 		piirt.at(k, -1) = 'I';
 		if (piirt.ShowCounts)
 		{

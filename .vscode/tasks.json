@@ -36,7 +36,7 @@
                     "$msCompile"
                 ]
             },
-            
+
             "linux": {
                 "label": "C/C++: g++ käännä ohjelma",
                 "type": "shell",
@@ -79,16 +79,16 @@
                     "${workspaceFolder}\\built"
                 ]
             },
-            // "linux": {
-            //     "group": "build",
-            //     "type": "process",
-            //     "options": { "shell": { "executable": "/bin/bash" } },
-            //     "command": "mkdir",
-            //     "args": [
-            //         "-p",
-            //         "${workspaceFolder}/built"
-            //     ]
-            // },
+            "linux": {
+                "group": "build",
+                "type": "process",
+                "options": { "shell": { "executable": "/bin/bash" } },
+                "command": "mkdir",
+                "args": [
+                    "-p",
+                    "${workspaceFolder}/built"
+                ]
+            },
             "detail": "Makes the built directory in case it doesn't exist yet."
         }
     ],
