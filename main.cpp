@@ -24,18 +24,18 @@ int main(int argc, char** argv)
 {
 	try
 	{	
+		const int bottomMargin{ 2 };
 		int lukuja = 100;
 		int maxValue{ 24 };
-		const int bottomMargin{ 2 };
 		int CompDelay = 3;
+		int insertSortThreshold{ 8 };
 
-		int *arguments[]{ nullptr, &CompDelay, &lukuja, &maxValue };
+		int *arguments[]{ nullptr, &CompDelay, &lukuja, &maxValue, &insertSortThreshold };
 		for ( int i = 1; i < argc; ++i )
 			if ( int temp = ParseNumber(argv[i]); temp >= 0 )
 				*arguments[i] = temp;
 
 		int writeDelay = CompDelay*1;
-		const int insertSortThreshold{ 8 };
 
 		Piirturi p{ lukuja, maxValue, bottomMargin, CompDelay, writeDelay, true };
 		Randomizer dist(lukuja, maxValue);
@@ -86,8 +86,8 @@ int main(int argc, char** argv)
 
 			arpa = 1 + rand() % (10+bonus);
 			if (arpa <= 5) { Quicksort(arr, 0, lukuja - 1, p, insertSortThreshold * (rand() % 2)); }
-			else if ( arpa <= 8 ) { MergeSort(arr, 0, lukuja - 1, p, (insertSortThreshold + 4) * (rand() % 2)); }
-			else if ( arpa <= 9 ) { QMergeSort(arr, 0, lukuja - 1, p, (insertSortThreshold + 4) * (rand() % 2)); }
+			else if ( arpa <= 8 ) { MergeSort(arr, 0, lukuja - 1, p, insertSortThreshold * (rand() % 2)); }
+			else if ( arpa <= 9 ) { QMergeSort(arr, 0, lukuja - 1, p, insertSortThreshold * (rand() % 2)); }
 			else { InsertSort(arr, 0, lukuja - 1, p); }
 			
 			//Quicksort(arr, 0, lukuja - 1, p, insertSortThreshold);
