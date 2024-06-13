@@ -11,14 +11,14 @@
 
 int ParseNumber(const char* arg)
 {
-	int result{ -1 };
 	if ( '0' <= arg[0] && arg[0] <= '9' )
-	{
-		try { result = std::atoi(arg); }
-		catch ( ... ) { }
-	}
-	return result;
+		return std::atoi(arg);
+	else
+		return -1;
 }
+
+template<int N, typename T>
+constexpr int ArraySize(T(&)[N]) { return N; }
 
 int main(int argc, char** argv)
 {
@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 		int insertSortThreshold{ 8 };
 
 		int *arguments[]{ nullptr, &CompDelay, &lukuja, &maxValue, &insertSortThreshold };
-		for ( int i = 1; i < argc; ++i )
+		for ( int i = 1; i < std::min(argc, ArraySize(arguments)); ++i )
 			if ( int temp = ParseNumber(argv[i]); temp >= 0 )
 				*arguments[i] = temp;
 
